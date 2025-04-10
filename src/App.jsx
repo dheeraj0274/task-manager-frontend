@@ -16,19 +16,22 @@ import MainProject from "./pages/components/MainProject.jsx";
 
 function App() {
    const [data , setData] = useState([])
-  const [userData , setUserData]=useState('')
+  const [userData , setUserData]=useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return !!localStorage.getItem("username"); // Initialize based on localStorage
+  });
 
 
   
   return (
-    <AuthProvider>
+    <AuthProvider isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
     <Router>
       
        <Navbar/>
       
       <Routes>
       
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/dashboard"  element={<Dashboard  data={data} setData={setData} userData={userData} setUserData={setUserData} />} />
         <Route path="/login"  element={<Login />} />
         <Route path="/register" element={<Register />} />

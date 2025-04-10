@@ -2,10 +2,8 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return !!localStorage.getItem("username"); // Initialize based on localStorage
-  });
+export const AuthProvider = ({ children , isLoggedIn , setIsLoggedIn }) => {
+ 
 
   useEffect(() => {
     const handleStorageChange = () => {
