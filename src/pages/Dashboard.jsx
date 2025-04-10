@@ -46,7 +46,7 @@ function Dashboard({userData,setUserData , data , setData}) {
   useEffect(()=>{
     const fetchUser = async()=>{
       try{
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}\api\v1\profile`,{
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/profile`,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
