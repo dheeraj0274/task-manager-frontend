@@ -22,7 +22,7 @@ function Dashboard({userData,setUserData , data , setData}) {
   useEffect(()=>{
     const fetchProject = async()=>{
        try{
-          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/fetchprojects')`)
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/fetchprojects`)
          setData(res.data);
      
        
@@ -46,7 +46,7 @@ function Dashboard({userData,setUserData , data , setData}) {
   useEffect(()=>{
     const fetchUser = async()=>{
       try{
-      const response = await axios.get('http://localhost:8000/api/v1/profile',{
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}\api\v1\profile`,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
