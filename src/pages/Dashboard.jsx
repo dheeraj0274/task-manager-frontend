@@ -10,12 +10,13 @@ import { GrProjects } from "react-icons/gr";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import Project from "./components/Project";
+import { AlertTriangle } from "lucide-react";
 
 
 
 
 
-function Dashboard({userData,setUserData , data , setData}) {
+function Dashboard({userData,setUserData , data ,isLoggedIn, setData}) {
   const [isClosed, setIsClosed] = useState(false);
  
   
@@ -69,9 +70,11 @@ function Dashboard({userData,setUserData , data , setData}) {
   
   
   return (
-    <div className="pt-[60px] h-[100vh]   ">
+    <div className=" pt-[60px] h-[100vh]   ">
+      { isLoggedIn ? 
+      <div >
       {/* sidebar */}
-      <div className={`${isClosed ? 'w-[80px]' : 'w-[200px]' }  transition-all duration-300 h-full  bg-white  fixed`}>
+      <div className={`${isClosed ? 'w-[80px]' : 'w-[200px]' }   transition-all duration-300   bg-white  fixed`}>
         <div
           className="absolute top-9 right-[-.6rem] "
           onClick={() => setIsClosed(!isClosed)}
@@ -129,19 +132,43 @@ function Dashboard({userData,setUserData , data , setData}) {
         
       </div>
 
-      {/* Center-content */}
+  
      
       <div
         className={`transition-all duration-300  overflow-auto ${isClosed ? 'ml-[80px]' : 'ml-[200px]'}`}
-         // Dynamically add margin
+        
       >
         <Project data={data} />
       </div>
+
       
 
       
-      {/* Right-column-content */}
-
+  
+      </div> :
+      
+        <div className="h-[100vh]">
+        <div className="flex items-center justify-center  bg-gradient-to-br h-full from-gray-100 to-gray-300">
+         <div className="bg-white rounded-xl shadow-md p-8 text-center w-[90%]  max-w-md">
+       
+          
+            <div className="flex flex-col items-center mb-4">
+              <AlertTriangle className="text-yellow-500 w-10 h-10 mb-2" />
+              <h1 className="text-2xl font-semibold text-zinc-800">
+                Please Login to Continue
+              </h1>
+            </div>
+            <Link
+              to="/login"
+              className="inline-block px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+            >
+              Login
+            </Link>
+          
+          </div>
+            </div>
+            </div>
+      }
     </div>
   );
 }

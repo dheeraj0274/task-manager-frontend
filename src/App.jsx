@@ -32,7 +32,7 @@ function App() {
       <Routes>
       
       <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
-        <Route path="/dashboard"  element={<Dashboard  data={data} setData={setData} userData={userData} setUserData={setUserData} />} />
+        <Route path="/dashboard"  element={<Dashboard  isLoggedIn={isLoggedIn}  data={data} setData={setData} userData={userData} setUserData={setUserData} />} />
         <Route path="/login"  element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/createProject" element={<CreateProject  />} />
