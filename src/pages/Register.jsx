@@ -12,7 +12,7 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Registering", username, email, password);
-    axios.post('`${import.meta.env.VITE_API_URL}/api/v1/register`',{username,email,password}).then((response) => {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/v1/register`,{username,email,password}).then((response) => {
       console.log(response.data)
     }).catch((err) => {
       console.log(err)
