@@ -11,6 +11,8 @@ import './index.css';
 import { AuthProvider } from "./authContext.jsx";
 import MainProject from "./pages/components/MainProject.jsx";
 
+import { ToastContainer } from 'react-toastify';
+
 
 
 
@@ -38,6 +40,7 @@ function App() {
         <Route path="/createProject" element={<CreateProject  />} />
         <Route path="/mainprojects" element={<MainProject  data={data} setData={setData}  />} />
       </Routes>
+      <ToastContainer  position="top-center" autoClose={3000} hideProgressBar={false} closeOnClick pauseOnHover theme="light"/>
       
     </Router>
     </AuthProvider>

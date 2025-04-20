@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 
 function Register() {
@@ -9,14 +11,26 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Registering", username, email, password);
-    axios.post(`${import.meta.env.VITE_API_URL}/api/v1/register`,{username,email,password}).then((response) => {
-      console.log(response.data)
-    }).catch((err) => {
-      console.log(err)
-    });
+    try {
+      const res= await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/register`,{username,email,password})
+      if(res.status===200){
+        toast.success('✔️ Registered successfully');
+        setTimeout(() => {
+          navigate('/login')
+          
+        }, 2000);
+       
+
+      }
+       
+      
+    } catch (err) {
+      toast.error(err.response?.data?.message || "❌ Error during registration")
+      
+    }
+    
   };
   
   return (

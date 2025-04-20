@@ -4,6 +4,7 @@ import { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
+import { toast } from "react-toastify";
 
 
 function Login({setUserData}) {
@@ -20,10 +21,17 @@ function Login({setUserData}) {
         const res= await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/login` , {email , password})             
         localStorage.setItem('token' , res.data.token);
         localStorage.setItem('username',res.data.user.username);
+        if(res.status === 200){
+          toast.success('✔️ Registered successfully');
+          setTimeout(() => {
+            navigate('/dashboard')
+            
+          }, 2000);
+        }
         setIsLoggedIn(true)
         setEmail('')
         setPassword('')
-        navigate('/dashboard')
+       
       } catch (error) {
         console.log(error)
       }
